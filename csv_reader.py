@@ -1,234 +1,4 @@
-# import pandas as pd
-# import ollama
-# import logging
-# import re
-# import traceback
-# from ddgs import DDGS
 
-# MODEL_NAME = "qwen3-vl:4b"
-
-# # -------- LOGGING ----------
-# logging.basicConfig(
-#     filename="agent.log",
-#     level=logging.INFO,
-#     format="%(asctime)s - %(levelname)s - %(message)s"
-# )
-
-# class CSVAgent:
-#     def __init__(self):
-#         self.df = None
-
-#     # -------- LOAD CSV ----------
-#     def load_csv(self):
-#         try:
-#             path = input("Enter CSV file path: ")
-#             self.df = pd.read_csv(path)
-
-#             print("\n✅ CSV Loaded Successfully!")
-#             print("Columns:", list(self.df.columns))
-
-#             logging.info(f"CSV loaded: {path}")
-
-#         except Exception as e:
-#             logging.error(traceback.format_exc())
-#             print("Error loading CSV:", e)
-
-#     # -------- WEB SEARCH ----------
-#     def web_search(self, query):
-#         print("\n🌐 Performing Web Search...\n")
-#         logging.info(f"Web search: {query}")
-
-#         try:
-#             with DDGS() as ddgs:
-#                 results = list(ddgs.text(query, max_results=3))
-
-#             if not results:
-#                 print("No results found.")
-#                 return
-
-#             for r in results:
-#                 print("Title   :", r["title"])
-#                 print("Link    :", r["href"])
-#                 print("Snippet :", r["body"])
-#                 print("-" * 50)
-
-#         except Exception:
-#             logging.error(traceback.format_exc())
-#             print("Web search failed.")
-
-#     # -------- LLM NORMAL RESPONSE ----------
-#     def llm_chat(self, question):
-#         print("\n🤖 Thinking...\n")
-#         logging.info(f"LLM question: {question}")
-
-#         try:
-#             response = ollama.chat(
-#                 model=MODEL_NAME,
-#                 messages=[
-#                     {
-#                         "role": "system",
-#                         "content": "You are a helpful assistant. Answer in 3-5 lines only. Keep it simple."
-#                     },
-#                     {
-#                         "role": "user",
-#                         "content": question
-#                     }
-#                 ],
-#                 options={"temperature": 0.7}
-#             )
-
-#             answer = response.get("message", {}).get("content", "")
-
-#             print("🤖 LLM Answer:\n")
-#             print(answer)
-
-#             logging.info(f"LLM answer: {answer}")
-
-#         except Exception:
-#             logging.error(traceback.format_exc())
-#             print("LLM failed.")
-
-#     # -------- ADDRESS HANDLER ----------
-#     def handle_address_query(self, question):
-#         try:
-#             q = question.lower()
-
-#             if "address" in q or "location" in q:
-
-#                 name = re.sub(r"give.*address of", "", q)
-#                 name = re.sub(r"address of", "", name).strip()
-
-#                 if "title" not in self.df.columns:
-#                     return False
-
-#                 match = self.df[self.df['title'].astype(str).str.lower().str.contains(name, na=False)]
-
-#                 if not match.empty:
-#                     row = match.iloc[0]
-
-#                     address = f"{row.get('street','')}, {row.get('city','')}, {row.get('state','')}, {row.get('countryCode','')}"
-
-#                     print("\n📍 Address Found:\n")
-#                     print("Name    :", row.get('title', 'N/A'))
-#                     print("Address :", address)
-#                     print("Phone   :", row.get('phone', 'N/A'))
-#                     print("Website :", row.get('website', 'N/A'))
-#                     print("-" * 50)
-
-#                     logging.info(f"Address found for: {row.get('title')}")
-
-#                     return True
-
-#         except Exception:
-#             logging.error(traceback.format_exc())
-
-#         return False
-
-#     # -------- DATA QUESTION HANDLER ----------
-#     def handle_data_query(self, question):
-#         try:
-#             q = question.lower()
-
-#             # Normalize column names
-#             columns = {col.lower(): col for col in self.df.columns}
-
-#             # Match column intelligently
-#             def match_column():
-#                 for col in columns:
-#                     words = col.replace("(", "").replace(")", "").split()
-#                     if all(word in q for word in words):
-#                         return columns[col]
-
-#                 # fallback: partial match
-#                 for col in columns:
-#                     if any(word in col for word in q.split()):
-#                         return columns[col]
-
-#                 return None
-
-#             col = match_column()
-
-#             # --- AVG ---
-#             if "average" in q or "avg" in q or "mean" in q:
-#                 if col:
-#                     value = pd.to_numeric(self.df[col], errors='coerce').mean()
-#                     print("\n📊 Result:\n")
-#                     print(f"Average of '{col}' = {value:.2f}")
-#                     return True
-
-#             # --- SUM ---
-#             if "sum" in q or "total" in q:
-#                 if col:
-#                     value = pd.to_numeric(self.df[col], errors='coerce').sum()
-#                     print("\n📊 Result:\n")
-#                     print(f"Total of '{col}' = {value:.2f}")
-#                     return True
-
-#             # --- COUNT ---
-#             if "count" in q:
-#                 print("\n📊 Result:\n")
-#                 print(f"Total rows = {len(self.df)}")
-#                 return True
-
-#             # --- MAX ---
-#             if "max" in q:
-#                 if col:
-#                     value = pd.to_numeric(self.df[col], errors='coerce').max()
-#                     print("\n📊 Result:\n")
-#                     print(f"Max of '{col}' = {value}")
-#                     return True
-
-#             # --- MIN ---
-#             if "min" in q:
-#                 if col:
-#                     value = pd.to_numeric(self.df[col], errors='coerce').min()
-#                     print("\n📊 Result:\n")
-#                     print(f"Min of '{col}' = {value}")
-#                     return True
-
-#         except Exception:
-#             logging.error(traceback.format_exc())
-
-#         return False
-
-#     # -------- GENERAL QUESTION CHECK ----------
-#     def is_general_question(self, question):
-#         keywords = ["what", "why", "how", "explain", "define"]
-#         return any(word in question.lower() for word in keywords)
-
-#     # -------- MAIN LOOP ----------
-#     def ask(self):
-#         while True:
-#             question = input("\nAsk your question (type exit to quit): ")
-
-#             if question.lower() == "exit":
-#                 print("👋 Exiting agent...")
-#                 break
-
-#             logging.info(f"User: {question}")
-
-#             # 1️⃣ Address
-#             if self.handle_address_query(question):
-#                 continue
-
-#             # 2️⃣ Data query ✅ (FIXED)
-#             if self.handle_data_query(question):
-#                 continue
-
-#             # 3️⃣ General → LLM
-#             if self.is_general_question(question):
-#                 self.llm_chat(question)
-#                 continue
-
-#             # 4️⃣ Fallback → Web
-#             self.web_search(question)
-
-
-# # -------- RUN ----------
-# if __name__ == "__main__":
-#     agent = CSVAgent()
-#     agent.load_csv()
-#     agent.ask()
 
 
 
@@ -346,43 +116,59 @@ class ControlledDataAssistant:
         logging.info(f"Address search initiated for: {question}")
         
         try:
-            # Extract address keywords from question
             keywords = question.lower()
             
-            # Remove common phrases
-            keywords = keywords.replace("which company", "").replace("located", "").replace("in", ",").replace("at", ",")
-            keywords = keywords.replace("?", "").strip()
+            # Remove common question words/phrases that don't contribute to address search
+            remove_words = [
+                "which company", "what company", "give me", "give the",
+                "name of", "names of", "is located at", "located at", "is located in", 
+                "located in", "tell me about", "tell about", "info on", "details of",
+                "which", "is", "the", "of", "a", "an"
+            ]
             
-            # Remove extra quotes and special characters that might have been pasted
+            # Sort by length (longest first) to avoid partial replacements
+            remove_words = sorted(remove_words, key=len, reverse=True)
+            
+            for word in remove_words:
+                keywords = keywords.replace(" " + word + " ", " ")
+                # Also remove from start/end
+                if keywords.startswith(word + " "):
+                    keywords = keywords[len(word)+1:]
+                if keywords.endswith(" " + word):
+                    keywords = keywords[:-len(word)-1]
+            
+            # Remove special characters that might have been pasted
             keywords = keywords.replace('"', "").replace("'", "").replace("``", "").replace("'", "")
+            keywords = keywords.replace("?", "").replace(",", " ").strip()
             
-            # Clean up spacing
+            # Clean up spacing and normalize
             keywords = " ".join(keywords.split())
             
-            logging.debug(f"Extracted keywords: {keywords}")
+            logging.debug(f"Extracted address keywords: {keywords}")
             
-            # Search across all columns for address keywords
-            matches = self.search_csv_smart(keywords)
+            # If we have keywords, search for them
+            if keywords:
+                matches = self.search_csv_smart(keywords)
+                
+                if not matches.empty:
+                    logging.info(f"Found {len(matches)} companies matching address criteria")
+                    print(f"\n📍 COMPANIES FOUND (From CSV - {len(matches)} result(s)):")
+                    print(f"   Search criteria: {keywords}")
+                    print(f"   Matching rows:\n")
+                    
+                    for idx, row in matches.iterrows():
+                        print(f"   Row {idx + 1}:")
+                        print(f"      Company: {row.get('title', 'N/A')}")
+                        print(f"      Address: {row.get('street', 'N/A')}, {row.get('city', 'N/A')}, {row.get('state', 'N/A')}")
+                        print(f"      Phone: {row.get('phone', 'N/A')}")
+                        print(f"      Website: {row.get('website', 'N/A')}")
+                        print()
+                    
+                    logging.info(f"Address search successful, returned {len(matches)} results")
+                    return True
             
-            if not matches.empty:
-                logging.info(f"Found {len(matches)} companies matching address criteria")
-                print(f"\n📍 COMPANIES FOUND (From CSV - {len(matches)} result(s)):")
-                print(f"   Search criteria: {keywords}")
-                print(f"   Matching rows:\n")
-                
-                for idx, row in matches.iterrows():
-                    print(f"   Row {idx + 1}:")
-                    print(f"      Company: {row.get('title', 'N/A')}")
-                    print(f"      Address: {row.get('street', 'N/A')}, {row.get('city', 'N/A')}, {row.get('state', 'N/A')}")
-                    print(f"      Phone: {row.get('phone', 'N/A')}")
-                    print(f"      Website: {row.get('website', 'N/A')}")
-                    print()
-                
-                logging.info(f"Address search successful, returned {len(matches)} results")
-                return True
-            else:
-                logging.warning(f"No matches found for address search: {keywords}")
-                return False
+            logging.warning(f"No matches found for address search: {keywords}")
+            return False
         except Exception as e:
             logging.error(f"Error in address search: {traceback.format_exc()}")
             return False
@@ -541,10 +327,13 @@ class ControlledDataAssistant:
         q = question.lower()
         
         phrases_to_remove = [
-            "tell me about", "tell about", "what about", "info on", "details on",
+            "tell me about", "tell about", "what about", "info on", "details of", "details on",
             "give me", "give the", "what is the", "what is", "find", "show", "which",
             "company", "the", "of the", "for the", "of "
         ]
+        
+        # Sort by length (longest first) to avoid partial replacements
+        phrases_to_remove = sorted(phrases_to_remove, key=len, reverse=True)
         
         for phrase in phrases_to_remove:
             q = q.replace(phrase, " ").strip()
@@ -554,7 +343,7 @@ class ControlledDataAssistant:
         for metric in metrics:
             q = q.replace(metric, " ").strip()
         
-        q = q.replace("?", "").replace("'s", "").strip()
+        q = q.replace("?", "").replace("'s", "").replace('"', "").replace("'", "").strip()
         q = " ".join(q.split())
         
         logging.debug(f"Extracted company name: {q}")
@@ -1287,3 +1076,6 @@ if __name__ == "__main__":
         assistant.interact()
     else:
         print("❌ Failed to load CSV. Exiting.")
+
+
+

@@ -1068,3 +1068,161 @@ AttributeError: 'DataFrame' object has no attribute 'str'. Did you mean: 'std'?
 2026-02-22 22:52:45,472 - WARNING - [answer_data_question] - Could not answer data question: which shop has least reviewscount
 2026-02-22 22:52:45,472 - WARNING - [interact] - Could not answer from CSV: which shop has least reviewscount
 2026-02-22 22:52:45,472 - INFO - [ask_online_permission] - Information not found in CSV, requesting online permission for: which shop has least reviewscount
+{"event": "SYSTEM", "message": "CSV Loaded Successfully", "metadata": {"columns": ["title", "totalScore", "reviewsCount", "street", "city", "state", "countryCode", "website", "phone", "categories/0", "categories/1", "categories/2", "categories/3", "categories/4", "categories/5", "categories/6", "categories/7", "categories/8", "categories/9", "url", "categoryName"], "rows": 140}}
+{"event": "SYSTEM", "message": "CSV Loaded Successfully", "metadata": {"columns": ["Customer ID", "Age", "Gender", "Item Purchased", "Category", "Purchase Amount (USD)", "Location", "Size", "Color", "Season", "Review Rating", "Subscription Status", "Discount Applied", "Previous Purchases", "Payment Method", "Frequency of Purchases"], "rows": 3900}}
+{"event": "VISUALIZATION", "message": "Histogram generated", "metadata": {"column": "Purchase Amount (USD)"}}
+{"event": "SYSTEM", "message": "CSV Loaded", "metadata": {"columns": ["Customer ID", "Age", "Gender", "Item Purchased", "Category", "Purchase Amount (USD)", "Location", "Size", "Color", "Season", "Review Rating", "Subscription Status", "Discount Applied", "Previous Purchases", "Payment Method", "Frequency of Purchases"], "rows": 3900}}
+{"event": "SYSTEM", "message": "CSV Loaded", "metadata": {"columns": ["Customer ID", "Age", "Gender", "Item Purchased", "Category", "Purchase Amount (USD)", "Location", "Size", "Color", "Season", "Review Rating", "Subscription Status", "Discount Applied", "Previous Purchases", "Payment Method", "Frequency of Purchases"], "rows": 3900}}
+{"event": "SYSTEM", "message": "CSV Loaded", "metadata": {"columns": ["Customer ID", "Age", "Gender", "Item Purchased", "Category", "Purchase Amount (USD)", "Location", "Size", "Color", "Season", "Review Rating", "Subscription Status", "Discount Applied", "Previous Purchases", "Payment Method", "Frequency of Purchases"], "rows": 3900}}
+{"event": "DATA_QUERY", "message": "Column detected", "metadata": {"column": "Frequency of Purchases"}}
+2026-02-28 22:35:59,741 - INFO - [<module>] - ======================================================================
+2026-02-28 22:35:59,741 - INFO - [<module>] - CONTROLLED DATA ASSISTANT STARTED
+2026-02-28 22:35:59,741 - INFO - [<module>] - ======================================================================
+2026-02-28 22:35:59,741 - INFO - [__init__] - ControlledDataAssistant initialized
+2026-02-28 22:36:51,734 - INFO - [load_csv] - CSV loaded successfully: C:\Users\THIRISHA\OneDrive\Desktop\New folder\Agents\dataset.csv.csv
+2026-02-28 22:36:51,735 - INFO - [load_csv] - Dataset shape: 140 rows, 21 columns
+2026-02-28 22:36:51,735 - INFO - [load_csv] - Columns: title, totalScore, reviewsCount, street, city, state, countryCode, website, phone, categories/0, categories/1, categories/2, categories/3, categories/4, categories/5, categories/6, categories/7, categories/8, categories/9, url, categoryName
+2026-02-28 22:36:51,736 - INFO - [interact] - Starting interaction loop
+2026-02-28 22:42:37,883 - INFO - [interact] - Processing user question: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:42:37,884 - DEBUG - [is_address_question] - Address question check: True
+2026-02-28 22:42:37,884 - DEBUG - [interact] - Identified as address question
+2026-02-28 22:42:37,884 - INFO - [search_by_address] - Address search initiated for: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:42:37,884 - DEBUG - [search_by_address] - Extracted keywords: give the name of the company which is , 2nd floor,gandhipuram, coimb,ore
+2026-02-28 22:42:37,884 - INFO - [search_csv_smart] - Starting smart search for: give the name of the company which is , 2nd floor,gandhipuram, coimb,ore
+2026-02-28 22:42:37,884 - DEBUG - [search_csv_smart] - Search terms: ['give the name of the company which is', '2nd floor', 'gandhipuram', 'coimb', 'ore']
+2026-02-28 22:42:37,910 - DEBUG - [search_csv_smart] - After filtering for 'give the name of the company which is': 0 rows remaining
+2026-02-28 22:42:37,922 - DEBUG - [search_csv_smart] - After filtering for '2nd floor': 0 rows remaining
+2026-02-28 22:42:37,933 - DEBUG - [search_csv_smart] - After filtering for 'gandhipuram': 0 rows remaining
+2026-02-28 22:42:37,941 - DEBUG - [search_csv_smart] - After filtering for 'coimb': 0 rows remaining
+2026-02-28 22:42:37,948 - DEBUG - [search_csv_smart] - After filtering for 'ore': 0 rows remaining
+2026-02-28 22:42:37,951 - INFO - [search_csv_smart] - Search returned 0 matching rows
+2026-02-28 22:42:37,951 - WARNING - [search_by_address] - No matches found for address search: give the name of the company which is , 2nd floor,gandhipuram, coimb,ore
+2026-02-28 22:42:37,951 - INFO - [answer_company_question] - Processing company question: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:42:37,952 - DEBUG - [extract_company_name] - Extracted company name: name is located at 2nd floor","gandhipuram, coimbatore
+2026-02-28 22:42:37,952 - INFO - [search_company] - Searching for company: name is located at 2nd floor","gandhipuram, coimbatore
+2026-02-28 22:42:37,953 - WARNING - [search_company] - No company found matching: name is located at 2nd floor","gandhipuram, coimbatore
+2026-02-28 22:42:37,953 - DEBUG - [answer_company_question] - Not identified as company question
+2026-02-28 22:42:37,953 - DEBUG - [is_data_question] - Data question check: False
+2026-02-28 22:42:37,953 - WARNING - [interact] - Could not answer from CSV: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:42:37,953 - INFO - [ask_online_permission] - Information not found in CSV, requesting online permission for: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:43:19,245 - INFO - [ask_online_permission] - Online permission response: no
+2026-02-28 22:43:19,245 - INFO - [ask_online_permission] - Online search denied by user
+2026-02-28 22:43:37,720 - INFO - [interact] - Processing user question: give the details of TricKey Smart IT Solution
+2026-02-28 22:43:37,720 - DEBUG - [is_address_question] - Address question check: False
+2026-02-28 22:43:37,720 - INFO - [answer_company_question] - Processing company question: give the details of TricKey Smart IT Solution
+2026-02-28 22:43:37,720 - DEBUG - [extract_company_name] - Extracted company name: details trickey smart it solution
+2026-02-28 22:43:37,720 - INFO - [search_company] - Searching for company: details trickey smart it solution
+2026-02-28 22:43:37,722 - WARNING - [search_company] - No company found matching: details trickey smart it solution
+2026-02-28 22:43:37,722 - DEBUG - [answer_company_question] - Not identified as company question
+2026-02-28 22:43:37,722 - DEBUG - [is_data_question] - Data question check: False
+2026-02-28 22:43:37,722 - WARNING - [interact] - Could not answer from CSV: give the details of TricKey Smart IT Solution
+2026-02-28 22:43:37,723 - INFO - [ask_online_permission] - Information not found in CSV, requesting online permission for: give the details of TricKey Smart IT Solution
+2026-02-28 22:46:07,855 - INFO - [ask_online_permission] - Online permission response: no
+2026-02-28 22:46:07,855 - INFO - [ask_online_permission] - Online search denied by user
+2026-02-28 22:50:58,343 - INFO - [__init__] - ControlledDataAssistant initialized
+2026-02-28 22:50:58,355 - DEBUG - [is_address_question] - Address question check: True
+2026-02-28 22:50:58,355 - INFO - [search_by_address] - Address search initiated for: which company is located in 547, Dr Rajendra Prasad Rd, opposite to RISHABA POLY PACKS, Coimbatore
+2026-02-28 22:50:58,355 - DEBUG - [search_by_address] - Extracted keywords for address: , , 547, dr rajendra prasad rd, opposite to rishaba poly packs, coimbatore
+2026-02-28 22:50:58,355 - INFO - [search_csv_smart] - Starting smart search for: , , 547, dr rajendra prasad rd, opposite to rishaba poly packs, coimbatore
+2026-02-28 22:50:58,355 - DEBUG - [search_csv_smart] - Search terms: ['', '', '547', 'dr rajendra prasad rd', 'opposite to rishaba poly packs', 'coimbatore']
+2026-02-28 22:50:58,363 - DEBUG - [search_csv_smart] - After filtering for '547': 2 rows remaining
+2026-02-28 22:50:58,374 - DEBUG - [search_csv_smart] - After filtering for 'dr rajendra prasad rd': 1 rows remaining
+2026-02-28 22:50:58,386 - DEBUG - [search_csv_smart] - After filtering for 'opposite to rishaba poly packs': 1 rows remaining
+2026-02-28 22:50:58,394 - DEBUG - [search_csv_smart] - After filtering for 'coimbatore': 1 rows remaining
+2026-02-28 22:50:58,395 - INFO - [search_csv_smart] - Search returned 1 matching rows
+2026-02-28 22:50:58,396 - INFO - [search_by_address] - Found 1 companies matching address criteria
+2026-02-28 22:50:58,397 - INFO - [search_by_address] - Address search successful, returned 1 results
+2026-02-28 22:50:58,397 - DEBUG - [is_address_question] - Address question check: False
+2026-02-28 22:50:58,397 - INFO - [answer_company_question] - Processing company question: give the reviewcount of Shri Vetrivel IT Care
+2026-02-28 22:50:58,397 - DEBUG - [extract_company_name] - Extracted company name: shri vetrivel it care
+2026-02-28 22:50:58,397 - INFO - [search_company] - Searching for company: shri vetrivel it care
+2026-02-28 22:50:58,399 - INFO - [search_company] - Exact match found: Shri Vetrivel IT Care at row 8
+2026-02-28 22:50:58,399 - INFO - [answer_company_question] - Company found: Shri Vetrivel IT Care at row 8
+2026-02-28 22:50:58,399 - DEBUG - [extract_metric] - Extracting metric from: give the reviewcount of Shri Vetrivel IT Care
+2026-02-28 22:50:58,399 - DEBUG - [extract_metric] - Metric identified: reviewsCount
+2026-02-28 22:50:58,399 - INFO - [answer_company_question] - Company metric answer - reviewsCount: 131.0
+2026-02-28 22:50:58,400 - DEBUG - [is_address_question] - Address question check: False
+2026-02-28 22:50:58,400 - INFO - [answer_company_question] - Processing company question: tell about IT Konnect
+2026-02-28 22:50:58,400 - DEBUG - [extract_company_name] - Extracted company name: it konnect
+2026-02-28 22:50:58,400 - INFO - [search_company] - Searching for company: it konnect
+2026-02-28 22:50:58,401 - INFO - [search_company] - Exact match found: IT Konnect at row 3
+2026-02-28 22:50:58,401 - INFO - [answer_company_question] - Company found: IT Konnect at row 3
+2026-02-28 22:50:58,401 - DEBUG - [extract_metric] - Extracting metric from: tell about IT Konnect
+2026-02-28 22:50:58,401 - DEBUG - [extract_metric] - No specific metric identified
+2026-02-28 22:50:58,402 - INFO - [answer_company_question] - Full company details returned for: IT Konnect
+2026-02-28 22:50:58,403 - DEBUG - [is_address_question] - Address question check: False
+2026-02-28 22:50:58,403 - INFO - [answer_company_question] - Processing company question: how many rows in the dataset
+2026-02-28 22:50:58,403 - DEBUG - [extract_company_name] - Extracted company name: how many rows in dataset
+2026-02-28 22:50:58,403 - INFO - [search_company] - Searching for company: how many rows in dataset
+2026-02-28 22:50:58,404 - WARNING - [search_company] - No company found matching: how many rows in dataset
+2026-02-28 22:50:58,404 - DEBUG - [answer_company_question] - Not identified as company question
+2026-02-28 22:50:58,404 - DEBUG - [is_data_question] - Data question check: True
+2026-02-28 22:50:58,404 - INFO - [answer_data_question] - Processing data aggregation question: how many rows in the dataset
+2026-02-28 22:50:58,404 - INFO - [answer_data_question] - Row count result: 140
+2026-02-28 22:53:48,504 - INFO - [<module>] - ======================================================================
+2026-02-28 22:53:48,504 - INFO - [<module>] - CONTROLLED DATA ASSISTANT STARTED
+2026-02-28 22:53:48,504 - INFO - [<module>] - ======================================================================
+2026-02-28 22:53:48,504 - INFO - [__init__] - ControlledDataAssistant initialized
+2026-02-28 22:53:52,308 - ERROR - [load_csv] - Error loading CSV: Traceback (most recent call last):
+  File "c:\Users\THIRISHA\OneDrive\Desktop\New folder\Agents\csv_reader.py", line 39, in load_csv
+    self.df = pd.read_csv(path)
+              ~~~~~~~~~~~^^^^^^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\THIRISHA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe "c:/Users/THIRISHA/OneDrive/Desktop/New folder/Agents/csv_reader.py"'
+
+2026-02-28 22:53:52,309 - ERROR - [<module>] - Failed to load CSV, exiting
+2026-02-28 22:53:52,309 - INFO - [<module>] - ======================================================================
+2026-02-28 22:53:52,309 - INFO - [<module>] - CONTROLLED DATA ASSISTANT ENDED
+2026-02-28 22:53:52,309 - INFO - [<module>] - ======================================================================
+2026-02-28 22:53:52,309 - INFO - [__init__] - ControlledDataAssistant initialized
+2026-02-28 22:53:57,545 - ERROR - [load_csv] - Error loading CSV: Traceback (most recent call last):
+  File "c:\Users\THIRISHA\OneDrive\Desktop\New folder\Agents\csv_reader.py", line 39, in load_csv
+    self.df = pd.read_csv(path)
+              ~~~~~~~~~~~^^^^^^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\THIRISHA\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\THIRISHA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe "c:/Users/THIRISHA/OneDrive/Desktop/New folder/Agents/csv_reader.py"'
+
