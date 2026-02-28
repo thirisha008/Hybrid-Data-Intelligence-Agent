@@ -1226,3 +1226,40 @@ OSError: [Errno 22] Invalid argument: 'C:\\Users\\THIRISHA\\AppData\\Local\\Prog
     )
 OSError: [Errno 22] Invalid argument: 'C:\\Users\\THIRISHA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe "c:/Users/THIRISHA/OneDrive/Desktop/New folder/Agents/csv_reader.py"'
 
+2026-02-28 22:54:08,011 - INFO - [<module>] - ======================================================================
+2026-02-28 22:54:08,011 - INFO - [<module>] - CONTROLLED DATA ASSISTANT STARTED
+2026-02-28 22:54:08,011 - INFO - [<module>] - ======================================================================
+2026-02-28 22:54:08,011 - INFO - [__init__] - ControlledDataAssistant initialized
+2026-02-28 22:54:20,088 - INFO - [load_csv] - CSV loaded successfully: C:\Users\THIRISHA\OneDrive\Desktop\New folder\Agents\dataset.csv.csv
+2026-02-28 22:54:20,088 - INFO - [load_csv] - Dataset shape: 140 rows, 21 columns
+2026-02-28 22:54:20,088 - INFO - [load_csv] - Columns: title, totalScore, reviewsCount, street, city, state, countryCode, website, phone, categories/0, categories/1, categories/2, categories/3, categories/4, categories/5, categories/6, categories/7, categories/8, categories/9, url, categoryName
+2026-02-28 22:54:20,089 - INFO - [interact] - Starting interaction loop
+2026-02-28 22:54:45,717 - INFO - [interact] - Processing user question: give the details of TricKey Smart IT Solution
+2026-02-28 22:54:45,717 - DEBUG - [is_address_question] - Address question check: False
+2026-02-28 22:54:45,717 - INFO - [answer_company_question] - Processing company question: give the details of TricKey Smart IT Solution
+2026-02-28 22:54:45,717 - DEBUG - [extract_company_name] - Extracted company name: trickey smart it solution
+2026-02-28 22:54:45,717 - INFO - [search_company] - Searching for company: trickey smart it solution
+2026-02-28 22:54:45,719 - INFO - [search_company] - Exact match found: TricKey Smart IT Solution at row 13
+2026-02-28 22:54:45,719 - INFO - [answer_company_question] - Company found: TricKey Smart IT Solution at row 13
+2026-02-28 22:54:45,719 - DEBUG - [extract_metric] - Extracting metric from: give the details of TricKey Smart IT Solution
+2026-02-28 22:54:45,719 - DEBUG - [extract_metric] - No specific metric identified
+2026-02-28 22:54:45,722 - INFO - [answer_company_question] - Full company details returned for: TricKey Smart IT Solution
+2026-02-28 22:54:45,722 - DEBUG - [interact] - Successfully answered as company question
+2026-02-28 22:55:41,460 - INFO - [interact] - Processing user question: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:55:41,460 - DEBUG - [is_address_question] - Address question check: True
+2026-02-28 22:55:41,460 - DEBUG - [interact] - Identified as address question
+2026-02-28 22:55:41,460 - INFO - [search_by_address] - Address search initiated for: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:55:41,460 - DEBUG - [search_by_address] - Extracted address keywords: company 2nd floor gandhipuram coimbatore
+2026-02-28 22:55:41,460 - INFO - [search_csv_smart] - Starting smart search for: company 2nd floor gandhipuram coimbatore
+2026-02-28 22:55:41,460 - DEBUG - [search_csv_smart] - Search terms: ['company 2nd floor gandhipuram coimbatore']
+2026-02-28 22:55:41,480 - DEBUG - [search_csv_smart] - After filtering for 'company 2nd floor gandhipuram coimbatore': 0 rows remaining
+2026-02-28 22:55:41,481 - INFO - [search_csv_smart] - Search returned 0 matching rows
+2026-02-28 22:55:41,481 - WARNING - [search_by_address] - No matches found for address search: company 2nd floor gandhipuram coimbatore
+2026-02-28 22:55:41,481 - INFO - [answer_company_question] - Processing company question: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:55:41,481 - DEBUG - [extract_company_name] - Extracted company name: name is located at 2nd floor,gandhipuram, coimbatore
+2026-02-28 22:55:41,481 - INFO - [search_company] - Searching for company: name is located at 2nd floor,gandhipuram, coimbatore
+2026-02-28 22:55:41,484 - WARNING - [search_company] - No company found matching: name is located at 2nd floor,gandhipuram, coimbatore
+2026-02-28 22:55:41,484 - DEBUG - [answer_company_question] - Not identified as company question
+2026-02-28 22:55:41,484 - DEBUG - [is_data_question] - Data question check: False
+2026-02-28 22:55:41,484 - WARNING - [interact] - Could not answer from CSV: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
+2026-02-28 22:55:41,484 - INFO - [ask_online_permission] - Information not found in CSV, requesting online permission for: give the name of the company which is located at 2nd Floor","Gandhipuram, Coimbatore
